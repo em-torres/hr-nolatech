@@ -1,13 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/db');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 const app = express();
 connectDB();
+
+// Middleware for parsing JSON
 app.use(express.json());
 
-// Routes
+// Define routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/employees', require('./routes/employeeRoutes'));
 app.use('/api/evaluations', require('./routes/evaluationRoutes'));
