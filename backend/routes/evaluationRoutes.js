@@ -1,10 +1,22 @@
 const express = require('express');
-const { createEvaluation, getEvaluation, updateEvaluation } = require('../controllers/evaluationController');
+const { createEvaluation, getEvaluations, getEvaluationById, updateEvaluation, deleteEvaluation  } = require('../controllers/evaluationController');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
-router.post('/', authMiddleware('Manager'), createEvaluation);
-router.get('/:id', authMiddleware(), getEvaluation);
+// Create a new evaluation - Only accessible by Managers
+router.post('/', authMiddleware('Manager', 'Admin'), createEvaluation);
+
+// Get all evaluations - Accessible by all authenticated users
+router.get('/', authMiddleware(), getEvaluations);
+
+// Get a specific evaluation by ID - Accessible by all authenticated users
+router.get('/:id', authMiddleware(), getEvaluationById);
+
+// Update an evaluation by ID - Only accessible by Managers
 router.put('/:id', authMiddleware('Manager'), updateEvaluation);
+
+// Delete an evaluation by ID - Only accessible by Managers
+router.delete('/:id', authMiddleware('Manager'), deleteEvaluation);
+
 
 module.exports = router;
