@@ -7,6 +7,7 @@ exports.createEvaluation = async (req, res) => {
         await evaluation.save();
         res.status(201).json(evaluation);
     } catch (error) {
+        console.log('Error during evaluation creation:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
@@ -17,6 +18,7 @@ exports.getEvaluation = async (req, res) => {
         if (!evaluation) return res.status(404).json({ error: 'Evaluation not found' });
         res.status(200).json(evaluation);
     } catch (error) {
+        console.log('Error during evaluation retrieval:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
@@ -33,6 +35,7 @@ exports.updateEvaluation = async (req, res) => {
         await evaluation.save();
         res.status(200).json(evaluation);
     } catch (error) {
+        console.log('Error during evaluation update:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
