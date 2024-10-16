@@ -20,6 +20,9 @@ importers:
       axios:
         specifier: ^1.7.7
         version: 1.7.7
+      cors:
+        specifier: ^2.8.5
+        version: 2.8.5
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -41,6 +44,16 @@ importers:
       web-vitals:
         specifier: ^2.1.4
         version: 2.1.4
+    devDependencies:
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.47)
+      postcss:
+        specifier: ^8.4.47
+        version: 8.4.47
+      tailwindcss:
+        specifier: ^3.4.14
+        version: 3.4.14
 
 packages:
 
@@ -1988,6 +2001,10 @@ packages:
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
+
+  cors@2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
 
   cosmiconfig@6.0.0:
     resolution: {integrity: sha512-xb3ZL6+L8b9JLLCx3ZdoZy4+2ECphCMo2PwqgP1tlfVq6M6YReyzBJtvWWtbDSpNr9hn96pkCiZqUcFEc+54Qg==}
@@ -5053,8 +5070,8 @@ packages:
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
 
-  tailwindcss@3.4.13:
-    resolution: {integrity: sha512-KqjHOJKogOUt5Bs752ykCeiwvi0fKVkr5oqsFNt/8px/tA8scFPIlkygsf6jXrfCqGHz7VflA6+yytWuM+XhFw==}
+  tailwindcss@3.4.14:
+    resolution: {integrity: sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -7988,6 +8005,11 @@ snapshots:
   core-js@3.38.1: {}
 
   core-util-is@1.0.3: {}
+
+  cors@2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
 
   cosmiconfig@6.0.0:
     dependencies:
@@ -11036,7 +11058,7 @@ snapshots:
       semver: 7.6.3
       source-map-loader: 3.0.2(webpack@5.95.0)
       style-loader: 3.3.4(webpack@5.95.0)
-      tailwindcss: 3.4.13
+      tailwindcss: 3.4.14
       terser-webpack-plugin: 5.3.10(webpack@5.95.0)
       webpack: 5.95.0
       webpack-dev-server: 4.15.2(webpack@5.95.0)
@@ -11649,7 +11671,7 @@ snapshots:
 
   symbol-tree@3.2.4: {}
 
-  tailwindcss@3.4.13:
+  tailwindcss@3.4.14:
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2

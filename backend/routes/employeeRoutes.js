@@ -10,12 +10,12 @@ router.get('/', authMiddleware(), getEmployees);
 router.get('/:id', authMiddleware(), getEmployeeById);
 
 // Create a new employee
-router.post('/', authMiddleware(), createEmployee);
+router.post('/', authMiddleware(['Manager', 'Admin']), createEmployee);
 
 // Update an employee
-router.put('/:id', authMiddleware(), updateEmployee);
+router.put('/:id', authMiddleware(['Manager', 'Admin']), updateEmployee);
 
 // Delete an employee
-router.delete('/:id', authMiddleware(), deleteEmployee);
+router.delete('/:id', authMiddleware(['Manager', 'Admin']), deleteEmployee);
 
 module.exports = router;

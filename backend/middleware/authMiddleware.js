@@ -1,20 +1,21 @@
 const jwt = require('jsonwebtoken');
 
-const authMiddleware = (role) => {
+const authMiddleware = (roles = []) => {
     return (req, res, next) => {
-        const token = req.header('Authorization').replace('Bearer ', '');
-        if (!token) return res.status(401).json({ error: 'No token, authorization denied' });
-
         try {
+            // Obtener el token del header de autorización
+            const token = req.header('Authorization').replace('Bearer ', '');
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            console.log(role);
-            if (role && decoded.role !== role) {
-                return res.status(403).json({ error: 'Access denied' });
-            }
             req.user = decoded;
+
+            // Verificar si el rol del usuario está en los roles permitidos
+            if (roles.length > 0 && !roles.includes(req.user.role)) {
+                return res.status(403).json({ error: 'No tienes permiso para acceder a este recurso' });
+            }
+
             next();
         } catch (error) {
-            res.status(401).json({ error: 'Token is not valid' });
+            res.status(401).json({ error: 'Autenticación fallida' });
         }
     };
 };

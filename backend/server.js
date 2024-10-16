@@ -1,9 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/db');
 require('dotenv').config();
 
 const app = express();
 connectDB();
+
+// Middleware for CORS
+app.use(cors());
 
 // Middleware for parsing JSON
 app.use(express.json());

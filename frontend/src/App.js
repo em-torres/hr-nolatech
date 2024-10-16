@@ -1,15 +1,33 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import EvaluationForm from './components/EvaluationForm';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
+
 
 function App() {
   return (
-      <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
-        </Switch>
-      </Router>
+      <AuthProvider>
+          <Router>
+              <Routes>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/dashboard" element={
+                      <PrivateRoute>
+                        <Dashboard />
+                      </PrivateRoute>
+                  } />
+                  <Route path="/evaluation" element={
+                      <PrivateRoute>
+                          <EvaluationForm />
+                      </PrivateRoute>
+                  } />
+                  <Route path="*" element={<Navigate to="/login" />} />
+              </Routes>
+          </Router>
+      </AuthProvider>
   );
 }
 
